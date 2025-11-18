@@ -45,6 +45,7 @@ def load_train_valid_test_datasets(
             os.path.join('..', data_path, "ratings_all_development_set.csv"))
     L = all_df.shape[0]
     all_rows = np.arange(L)
+    print(all_rows)
 
     ## Divide into predefined splits
     test_rows = all_rows[:n_test]

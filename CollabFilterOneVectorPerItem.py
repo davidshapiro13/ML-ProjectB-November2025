@@ -49,16 +49,17 @@ class CollabFilterOneVectorPerItem(AbstractBaseCollabFilterSGD):
             Keys are string names of parameters
             Values are *numpy arrays* of parameter values
         '''
+        print("NUM USERS", n_users)
         random_state = self.random_state # inherited RandomState object
-
+        print("TRAIN TUPLE:", train_tuple)
         # TODO fix the lines below to have right dimensionality & values
         # TIP: use self.n_factors to access number of hidden dimensions
         self.param_dict = dict(
             mu=ag_np.ones(1),
-            b_per_user=ag_np.ones(1), # FIX dimensionality
-            c_per_item=ag_np.ones(1), # FIX dimensionality
-            U=0.001 * random_state.randn(1), # FIX dimensionality
-            V=0.001 * random_state.randn(1), # FIX dimensionality
+            b_per_user=ag_np.ones(n_users), # FIX dimensionality
+            c_per_item=ag_np.ones(n_items), # FIX dimensionality
+            U=0.001 * random_state.randn(self.n_factors, n_users), # FIX dimensionality
+            V=0.001 * random_state.randn(self.n_factors, n_items), # FIX dimensionality
             )
 
 
@@ -82,7 +83,14 @@ class CollabFilterOneVectorPerItem(AbstractBaseCollabFilterSGD):
         '''
         # TODO: Update with actual prediction logic
         N = user_id_N.size
-        yhat_N = ag_np.ones(N)
+        M = item_id_N.size
+        yhat_N = ag_np.zeros(N)
+        pair_num = 0
+        print("Issue?", ag_np.asarray(c_per_item))
+        for pair_num in range(len(c_per_item)):
+            print("pair num", type(pair_num))
+            yhat_N[pair_num] = mu + b_per_user[pair_num] + c_per_item[pair_num] + ag_np.matmul(U[:, pair_num], V[:, pair_num])
+        #yhat_N = mu + b_per_user + c_per_item + ag_np.matmul(U.T, V)
         return yhat_N
 
 
@@ -103,7 +111,7 @@ class CollabFilterOneVectorPerItem(AbstractBaseCollabFilterSGD):
         # TIP: use self.alpha to access regularization strength
         y_N = data_tuple[2]
         yhat_N = self.predict(data_tuple[0], data_tuple[1], **param_dict)
-        loss_total = 0.0
+        loss_total = self.alpha * (ag_np.sum(ag_np.square(param_dict['V'])) + ag_np.sum(ag_np.square(param_dict['U']))) + ag_np.sum(ag_np.square(y_N - yhat_N))
         return loss_total    
 
 
