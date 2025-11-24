@@ -134,13 +134,13 @@ if __name__ == '__main__':
         model.fit(train_tuple, valid_tuple)
         train_1 = model.trace_rmse_train
         valid_1 = model.trace_rmse_valid
-        plt.plot( model.trace_epoch, model.trace_rmse_train, '.-', color='aqua')
-        plt.plot( model.trace_epoch, model.trace_rmse_valid,  '.-', color='pink')
+        plt.plot( model.trace_epoch, model.trace_rmse_train, '.-', color='aqua', label='Training')
+        plt.plot( model.trace_epoch, model.trace_rmse_valid,  '.-', color='pink', label="Validation")
         plt.ylabel('RMSE')
         plt.xlabel("Epoch")
         plt.legend(bbox_to_anchor=(1.33, 0.5)) # make legend outside plot
-        plt.savefig('K=' + str(K) + " train-valid RMSE alpha=0.png")
-        plt.close()
+        #plt.savefig('K=' + str(K) + " train-valid RMSE alpha=0.png")
+        plt.show()
 
         model2 = CollabFilterOneVectorPerItem(
         n_epochs=10, batch_size=1000, step_size=0.1,
@@ -149,13 +149,13 @@ if __name__ == '__main__':
         model2.fit(train_tuple, test_tuple)
         train_2 = model2.trace_rmse_train
         test_2 = model2.trace_rmse_valid
-        plt.plot( model.trace_epoch, model2.trace_rmse_train, '.-', color='black')
-        plt.plot( model.trace_epoch, model2.trace_rmse_valid,  '.-', color='red')
+        plt.plot( model.trace_epoch, model2.trace_rmse_train, '.-', color='black', label='Training')
+        plt.plot( model.trace_epoch, model2.trace_rmse_valid,  '.-', color='red', label='Testing')
         plt.ylabel('RMSE')
         plt.xlabel("Epoch")
         plt.legend(bbox_to_anchor=(1.33, 0.5)) # make legend outside plot
-        plt.close()
-        plt.savefig('K=' + str(K) + " train-test RMSE alpha=0.png")
+        #plt.savefig('K=' + str(K) + " train-test RMSE alpha=0.png")
+        plt.show()
 
         print("TRAIN SAME", train_1 == train_2)
         print("Valid DIFF ", valid_1 == test_2)

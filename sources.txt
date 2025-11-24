@@ -1,0 +1,3 @@
+https://surprise.readthedocs.io/en/stable/reader.html
+https://www.w3schools.com/python/pandas/pandas_csv.asp
+https://surprise.readthedocs.io/en/stable/dataset.html#surprise.dataset.Dataset
