@@ -20,6 +20,7 @@ dev_set = Dataset.load_from_file(
   os.path.join(DATA_PATH, 'ratings_all_development_set.csv'), reader=reader1)
 training = dev_set.build_full_trainset()
 
+
 test_set = Dataset.load_from_df(df, reader=reader2)
 test = test_set.build_full_trainset().build_testset()
 
@@ -38,6 +39,6 @@ parameter_grid['reg_all'] = np.logspace(-4, 4, 9)
 #)
 
 svd.fit(training)
-
-print(svd.test(test))
+print(svd.trainset.global_mean)
+#print(svd.test(test))
 #print(grid_searcher.best_index)

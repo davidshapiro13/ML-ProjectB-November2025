@@ -35,3 +35,41 @@ MAE lowest index: 171
 RMSE lowest index: 171
 epoch: 399.98571428571563
 -------
+-------------------------------------------
+Dec 1:
+
+step: 0.8
+min RMSE: 0.9190946594411507
+min MAE: 0.7246655232569181
+MAE lowest index: 118
+RMSE lowest index: 120
+epoch: 196.0
+-------
+step: 0.7
+min RMSE: 0.9194073522024324
+min MAE: 0.7241643348290103
+MAE lowest index: 131
+RMSE lowest index: 126
+epoch: 220.0
+-------
+step: 0.6
+min RMSE: 0.9190878985373906
+min MAE: 0.722770583364936
+MAE lowest index: 133
+RMSE lowest index: 135
+epoch: 256.0
+-------
+step: 0.5
+min RMSE: 0.9190420135065864
+min MAE: 0.7239573524725061
+MAE lowest index: 142
+RMSE lowest index: 149
+epoch: 312.0
+-------
+step: 0.1
+min RMSE: 0.9495459048714832
+min MAE: 0.750436436253742
+MAE lowest index: 171
+RMSE lowest index: 171
+epoch: 399.98571428571563
+-------
