@@ -20,7 +20,7 @@ reader = Reader(
 train_set = Dataset.load_from_file(
     'data_movie_lens_100k/ratings_all_development_set.csv', reader=reader)
 train_set = train_set.build_full_trainset()
-
+print(type(train_set))
 # Use the SVD algorithm
 for n_factors in [1]:
     ## Fit model like in problem 1

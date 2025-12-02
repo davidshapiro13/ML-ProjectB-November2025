@@ -59,8 +59,8 @@ class CollabFilterOneVectorPerItem(AbstractBaseCollabFilterSGD):
             mu=ag_np.asarray([ag_np.mean(train_tuple[2])]),
             b_per_user=ag_np.ones(n_users), # FIX dimensionality
             c_per_item=ag_np.ones(n_items), # FIX dimensionality
-            U=0.001 * random_state.randn(n_users, self.n_factors), # FIX dimensionality
-            V=0.001 * random_state.randn(n_items, self.n_factors), # FIX dimensionality
+            U=0.1 * random_state.randn(n_users, self.n_factors), # FIX dimensionality
+            V=0.1 * random_state.randn(n_items, self.n_factors), # FIX dimensionality
             )
 
     def predict(self, user_id_N, item_id_N,
